@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tool_pages",
+  "info": {
+    "singularName": "tool-page",
+    "pluralName": "tool-pages",
+    "displayName": "tool-page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "toolName": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "toolName",
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "scope": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "core",
+        "swst",
+        "swsc"
+      ]
+    },
+    "accessLevel": {
+      "type": "enumeration",
+      "required": true,
+      "default": "public",
+      "enum": [
+        "public",
+        "organization_only"
+      ]
+    },
+    "organization": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::organization.organization",
+      "inversedBy": "tool_pages"
+    },
+    "referralURL": {
+      "type": "string",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "string"
+    },
+    "videoUrl": {
+      "type": "string"
+    },
+    "detailText": {
+      "type": "text"
+    },
+    "category": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "tutorialUrl": {
+      "type": "string"
+    }
+  }
+}
