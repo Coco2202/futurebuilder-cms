@@ -1,0 +1,57 @@
+trigger:
+  - develop
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: fba-dev-vars-cms
+  - name: imageRepository
+    value: fba-dev-cms
+  - name: containerRegistry
+    value: fbadevacr.azurecr.io
+  - name: dockerfilePath
+    value: $(Build.SourcesDirectory)/Dockerfile
+  - name: tag
+    value: $(Build.BuildId)
+  - name: fullImageName
+    value: $(containerRegistry)/$(imageRepository):$(tag)
+
+stages:
+  - stage: BuildAndDeploy
+    displayName: Build and Deploy CMS
+    jobs:
+      - job: BuildAndDeploy
+        displayName: Build Docker Image and Deploy to Container App
+        pool:
+          vmImage: ubuntu-latest
+
+        steps:
+          - checkout: self
+
+          - task: Docker@2
+            displayName: Build and Push Docker Image
+            inputs:
+              command: buildAndPush
+              repository: $(imageRepository)
+              dockerfile: $(dockerfilePath)
+              containerRegistry: acr_futurebuilder_dev
+              buildContext: $(Build.SourcesDirectory)
+              tags: |
+                $(tag)
+                latest
+              arguments: --platform linux/amd64
+
+          - task: AzureCLI@2
+            displayName: Deploy to Azure Container App
+            inputs:
+              azureSubscription: arm_futurebuilder_dev
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az extension add --name containerapp --upgrade --yes
+
+                az containerapp update \
+                  --name fba-dev-cms \
+                  --resource-group fba-dev-rg \
+                  --image $(fullImageName)
