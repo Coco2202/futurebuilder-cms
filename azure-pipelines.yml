@@ -1,57 +1,58 @@
+# Build and deploy Strapi CMS to Azure Container Apps (develop branch).
+# Dockerfile and build context are at the repository root.
+
 trigger:
-  - develop
+  branches:
+    include:
+      - develop
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: ubuntu-latest
 
 variables:
   - group: fba-dev-vars-cms
+  - name: containerRegistryLoginServer
+    value: fbadevacr.azurecr.io
   - name: imageRepository
     value: fba-dev-cms
-  - name: containerRegistry
-    value: fbadevacr.azurecr.io
-  - name: dockerfilePath
-    value: $(Build.SourcesDirectory)/Dockerfile
+  - name: resourceGroup
+    value: fba-dev-rg
+  - name: containerAppName
+    value: fba-dev-cms
   - name: tag
     value: $(Build.BuildId)
-  - name: fullImageName
-    value: $(containerRegistry)/$(imageRepository):$(tag)
+  - name: dockerfilePath
+    value: $(Build.SourcesDirectory)/Dockerfile
+  - name: buildContext
+    value: $(Build.SourcesDirectory)
 
-stages:
-  - stage: BuildAndDeploy
-    displayName: Build and Deploy CMS
-    jobs:
-      - job: BuildAndDeploy
-        displayName: Build Docker Image and Deploy to Container App
-        pool:
-          vmImage: ubuntu-latest
+steps:
+  - checkout: self
+    fetchDepth: 1
 
-        steps:
-          - checkout: self
+  - task: Docker@2
+    displayName: Build and push image
+    inputs:
+      command: buildAndPush
+      containerRegistry: acr_futurebuilder_dev
+      repository: $(imageRepository)
+      dockerfile: $(dockerfilePath)
+      buildContext: $(buildContext)
+      tags: |
+        $(tag)
+        latest
+      arguments: "--platform linux/amd64"
 
-          - task: Docker@2
-            displayName: Build and Push Docker Image
-            inputs:
-              command: buildAndPush
-              repository: $(imageRepository)
-              dockerfile: $(dockerfilePath)
-              containerRegistry: acr_futurebuilder_dev
-              buildContext: $(Build.SourcesDirectory)
-              tags: |
-                $(tag)
-                latest
-              arguments: --platform linux/amd64
-
-          - task: AzureCLI@2
-            displayName: Deploy to Azure Container App
-            inputs:
-              azureSubscription: arm_futurebuilder_dev
-              scriptType: bash
-              scriptLocation: inlineScript
-              inlineScript: |
-                az extension add --name containerapp --upgrade --yes
-
-                az containerapp update \
-                  --name fba-dev-cms \
-                  --resource-group fba-dev-rg \
-                  --image $(fullImageName)
+  - task: AzureCLI@2
+    displayName: Update Container App image
+    inputs:
+      azureSubscription: arm_futurebuilder_dev
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        set -euo pipefail
+        az extension add --name containerapp --upgrade --yes 2>/dev/null || true
+        az containerapp update \
+          --name "$(containerAppName)" \
+          --resource-group "$(resourceGroup)" \
+          --image "$(containerRegistryLoginServer)/$(imageRepository):$(tag)"
