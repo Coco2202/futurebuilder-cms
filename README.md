@@ -58,4 +58,15 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 
 ---
 
+## API surface (Future Builder Academy)
+
+Strapi exposes **content API** routes as **`/api/<api-id>`** (plural name of the collection type), for example **`/api/topics`**. Strapi does **not** use an **`/api/v1/...`** prefix—that namespace belongs to the separate **NestJS backend** in `futurebuilder-backend`.
+
+| Concern | Host | Example path |
+| -------- | ---- | ------------ |
+| Topics, tool pages, orgs, content items (CMS content) | Strapi base URL (e.g. CMS Container App) | **`GET /api/topics`** |
+| User onboarding profile (save/load persona, playlist hooks) | Nest backend base URL (`NEXT_PUBLIC_API_BASE_URL` on the frontend) | **`GET/POST /api/v1/onboarding`** |
+
+Calling **`https://<cms-host>/api/v1/onboarding`** will return **404** by design: that route is **not registered in Strapi**. Point API clients and **`NEXT_PUBLIC_API_BASE_URL`** at the **Nest backend** URL.
+
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
