@@ -1,0 +1,10 @@
+{
+  "attributes": {
+    "email": {
+      "type": "string",
+      "required": true,
+      "minLength": 6,
+      "configurable": false
+    }
+  }
+}
