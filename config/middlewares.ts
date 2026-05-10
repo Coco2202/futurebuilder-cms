@@ -1,9 +1,33 @@
 import type { Core } from '@strapi/strapi';
 
+const AZURE_STORAGE_ACCOUNT = process.env.AZURE_STORAGE_ACCOUNT ?? '';
+const storageOrigin = AZURE_STORAGE_ACCOUNT
+  ? `https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net`
+  : '';
+
 const config: Core.Config.Middlewares = [
   'strapi::logger',
   'strapi::errors',
-  'strapi::security',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'script-src': ["'self'", "'unsafe-inline'"],
+          'media-src': ["'self'", 'blob:', 'data:', ...(storageOrigin ? [storageOrigin] : [])],
+          'img-src': [
+            "'self'",
+            'blob:',
+            'data:',
+            'market-assets.strapi.io',
+            ...(storageOrigin ? [storageOrigin] : []),
+          ],
+        },
+      },
+    },
+  },
   {
     name: 'strapi::cors',
     config: {
