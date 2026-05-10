@@ -66,10 +66,13 @@ $RECYCLE.BIN/
 ############################
 
 .tmp
+.tmp/
+.cache/
 *.log
 *.sql
 *.sqlite
 *.sqlite3
+*.db
 
 
 ############################
@@ -95,6 +98,7 @@ pids
 logs
 results
 node_modules
+node_modules/
 .node_history
 
 ############################
@@ -122,10 +126,12 @@ coverage
 ############################
 
 .env
+!.env.example
 license.txt
 exports
 .strapi
 dist
 build
+build/
 .strapi-updater.json
 .strapi-cloud.json

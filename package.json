@@ -9,7 +9,7 @@
     "deploy": "strapi deploy",
     "dev": "strapi develop",
     "develop": "strapi develop",
-    "start": "strapi start",
+    "start": "node --require ./instrument.cjs ./node_modules/.bin/strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
@@ -18,10 +18,13 @@
     "@strapi/plugin-cloud": "5.43.0",
     "@strapi/plugin-users-permissions": "5.43.0",
     "@strapi/strapi": "5.43.0",
+    "applicationinsights": "^3.14.0",
     "better-sqlite3": "12.8.0",
+    "pg": "^8.16.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "strapi-provider-upload-azure-storage-v5": "^1.1.0",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
@@ -33,6 +36,10 @@
   "engines": {
     "node": ">=20.0.0 <=24.x.x",
     "npm": ">=6.0.0"
+  },
+  "overrides": {
+    "@strapi/admin": "5.43.0",
+    "@strapi/utils": "5.43.0"
   },
   "strapi": {
     "uuid": "b5434058-93b2-4ddd-87b5-c017753068e8",
