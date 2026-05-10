@@ -1,0 +1,78 @@
+# Future Builder Academy — Strapi CMS PRODUCTION pipeline
+# Triggers on main branch. Builds from main, pushes to fbaproductionacr,
+# deploys to fba-prod-cms in fba-prod-rg.
+#
+# Service connections required:
+#   arm_futurebuilder_dev  — ARM access (subscription-wide)
+#   acr_futurebuilder_prod — Docker registry: fbaproductionacr.azurecr.io
+# Variable group: fba-prod-vars-cms
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: fba-prod-vars-cms
+  - name: containerRegistryLoginServer
+    value: fbaproductionacr.azurecr.io
+  - name: imageRepository
+    value: fba-prod-cms
+  - name: resourceGroup
+    value: fba-prod-rg
+  - name: containerAppName
+    value: fba-prod-cms
+  - name: tag
+    value: $(Build.BuildId)
+
+steps:
+  - checkout: self
+    fetchDepth: 1
+
+  - script: |
+      set -euo pipefail
+      echo "HEAD: $(git log -1 --oneline)"
+      echo "Branch: $(Build.SourceBranchName)"
+    displayName: Verify checkout
+
+  - task: Docker@2
+    displayName: Docker build (linux/amd64)
+    inputs:
+      command: build
+      containerRegistry: acr_futurebuilder_prod
+      repository: $(imageRepository)
+      dockerfile: $(Build.SourcesDirectory)/Dockerfile
+      buildContext: $(Build.SourcesDirectory)
+      tags: |
+        $(tag)
+        latest
+      arguments: "--platform linux/amd64"
+
+  - task: Docker@2
+    displayName: Docker push ($(tag), latest)
+    inputs:
+      command: push
+      containerRegistry: acr_futurebuilder_prod
+      repository: $(imageRepository)
+      tags: |
+        $(tag)
+        latest
+
+  - task: AzureCLI@2
+    displayName: Deploy to fba-prod-cms
+    inputs:
+      azureSubscription: arm_futurebuilder_dev
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        set -euo pipefail
+        az extension add --name containerapp --upgrade --yes 2>/dev/null || true
+        IMAGE="$(containerRegistryLoginServer)/$(imageRepository):$(tag)"
+        echo "Deploying $IMAGE to $(containerAppName)"
+        az containerapp update \
+          --name "$(containerAppName)" \
+          --resource-group "$(resourceGroup)" \
+          --image "$IMAGE"
