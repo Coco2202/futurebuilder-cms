@@ -36,7 +36,8 @@
     "npm": ">=6.0.0"
   },
   "overrides": {
-    "@strapi/admin": "5.43.0"
+    "@strapi/admin": "5.43.0",
+    "@strapi/utils": "5.43.0"
   },
   "strapi": {
     "uuid": "b5434058-93b2-4ddd-87b5-c017753068e8",
