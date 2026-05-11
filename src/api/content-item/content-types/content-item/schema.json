@@ -117,6 +117,9 @@
     },
     "organizationIds": {
       "type": "json"
+    },
+    "customTags": {
+      "type": "json"
     }
   }
 }
