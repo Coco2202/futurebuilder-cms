@@ -68,6 +68,55 @@
       "relation": "manyToOne",
       "target": "api::organization.organization",
       "inversedBy": "content_items"
+    },
+    "difficultyLevel": {
+      "type": "enumeration",
+      "enum": [
+        "foundation",
+        "execution",
+        "optimisation"
+      ]
+    },
+    "estimatedImpact": {
+      "type": "enumeration",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "priority": {
+      "type": "integer",
+      "min": 1,
+      "max": 10,
+      "default": 5
+    },
+    "orderIndex": {
+      "type": "integer"
+    },
+    "ecosystemTags": {
+      "type": "json"
+    },
+    "personaTags": {
+      "type": "json"
+    },
+    "stageTags": {
+      "type": "json"
+    },
+    "goalTags": {
+      "type": "json"
+    },
+    "painPointTags": {
+      "type": "json"
+    },
+    "toolMaturityTags": {
+      "type": "json"
+    },
+    "billingMethodTags": {
+      "type": "json"
+    },
+    "organizationIds": {
+      "type": "json"
     }
   }
 }
