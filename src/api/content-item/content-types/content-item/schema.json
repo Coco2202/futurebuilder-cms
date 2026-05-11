@@ -36,7 +36,7 @@
       "type": "string",
       "required": true
     },
-    "durationSeconds": {
+    "durationMinutes": {
       "type": "integer"
     },
     "scope": {
@@ -94,12 +94,6 @@
       "type": "text"
     },
     "painPointTags": {
-      "type": "text"
-    },
-    "stageTags": {
-      "type": "text"
-    },
-    "ecosystemTags": {
       "type": "text"
     },
     "toolMaturityTags": {
