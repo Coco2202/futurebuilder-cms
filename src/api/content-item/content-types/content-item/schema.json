@@ -77,49 +77,39 @@
         "optimisation"
       ]
     },
-    "estimatedImpact": {
+    "priority": {
       "type": "enumeration",
+      "default": "medium",
       "enum": [
         "low",
         "medium",
-        "high"
+        "high",
+        "essential"
       ]
     },
-    "priority": {
-      "type": "integer",
-      "min": 1,
-      "max": 10,
-      "default": 5
-    },
-    "orderIndex": {
-      "type": "integer"
-    },
-    "ecosystemTags": {
-      "type": "json"
-    },
     "personaTags": {
-      "type": "json"
-    },
-    "stageTags": {
-      "type": "json"
+      "type": "text"
     },
     "goalTags": {
-      "type": "json"
+      "type": "text"
     },
     "painPointTags": {
-      "type": "json"
+      "type": "text"
+    },
+    "stageTags": {
+      "type": "text"
+    },
+    "ecosystemTags": {
+      "type": "text"
     },
     "toolMaturityTags": {
-      "type": "json"
+      "type": "text"
     },
     "billingMethodTags": {
-      "type": "json"
-    },
-    "organizationIds": {
-      "type": "json"
+      "type": "text"
     },
     "customTags": {
-      "type": "json"
+      "type": "text"
     }
   }
 }
