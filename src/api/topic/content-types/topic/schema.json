@@ -56,6 +56,17 @@
     "orderIndex": {
       "type": "integer",
       "required": true
+    },
+    "minLevel": {
+      "type": "enumeration",
+      "enum": [
+        "foundation",
+        "execution",
+        "optimisation"
+      ]
+    },
+    "estimatedMinutes": {
+      "type": "integer"
     }
   }
 }
