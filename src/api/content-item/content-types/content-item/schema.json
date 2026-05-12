@@ -37,7 +37,7 @@
       "required": true
     },
     "durationMinutes": {
-      "type": "integer"
+      "type": "decimal"
     },
     "scope": {
       "type": "enumeration",
@@ -88,19 +88,34 @@
       ]
     },
     "personaTags": {
-      "type": "text"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag"
     },
     "goalTags": {
-      "type": "text"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag"
     },
     "painPointTags": {
-      "type": "text"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag"
+    },
+    "stageTags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag"
     },
     "toolMaturityTags": {
-      "type": "text"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag"
     },
     "billingMethodTags": {
-      "type": "text"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag"
     },
     "customTags": {
       "type": "text"
