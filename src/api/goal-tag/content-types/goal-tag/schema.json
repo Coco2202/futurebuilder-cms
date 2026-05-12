@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "goal_tags",
+  "info": {
+    "singularName": "goal-tag",
+    "pluralName": "goal-tags",
+    "displayName": "Goal Tag"
+  },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": { "type": "uid", "targetField": "label", "required": true },
+    "label": { "type": "string", "required": true }
+  }
+}
