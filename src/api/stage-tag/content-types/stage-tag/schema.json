@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stage_tags",
+  "info": {
+    "singularName": "stage-tag",
+    "pluralName": "stage-tags",
+    "displayName": "Stage Tag"
+  },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": { "type": "uid", "targetField": "label", "required": true },
+    "label": { "type": "string", "required": true }
+  }
+}

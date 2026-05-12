@@ -23,11 +23,7 @@
     "type": {
       "type": "enumeration",
       "required": true,
-      "enum": [
-        "video",
-        "podcast",
-        "pdf"
-      ]
+      "enum": ["video", "podcast", "pdf"]
     },
     "description": {
       "type": "text"
@@ -42,20 +38,13 @@
     "scope": {
       "type": "enumeration",
       "required": true,
-      "enum": [
-        "core",
-        "swst",
-        "swsc"
-      ]
+      "enum": ["core", "swst", "swsc"]
     },
     "accessLevel": {
       "type": "enumeration",
       "required": true,
       "default": "public",
-      "enum": [
-        "public",
-        "organization_only"
-      ]
+      "enum": ["public", "organization_only"]
     },
     "topic": {
       "type": "relation",
@@ -71,51 +60,32 @@
     },
     "difficultyLevel": {
       "type": "enumeration",
-      "enum": [
-        "foundation",
-        "execution",
-        "optimisation"
-      ]
+      "enum": ["foundation", "execution", "optimisation"]
     },
     "priority": {
       "type": "enumeration",
       "default": "medium",
-      "enum": [
-        "low",
-        "medium",
-        "high",
-        "essential"
-      ]
+      "enum": ["low", "medium", "high", "essential"]
     },
     "personaTags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tag.tag"
-    },
-    "goalTags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag"
-    },
-    "painPointTags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag"
+      "target": "api::persona-tag.persona-tag"
     },
     "stageTags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tag.tag"
+      "target": "api::stage-tag.stage-tag"
     },
-    "toolMaturityTags": {
+    "goalTags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tag.tag"
+      "target": "api::goal-tag.goal-tag"
     },
-    "billingMethodTags": {
+    "painPointTags": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::tag.tag"
+      "target": "api::topic-tag.topic-tag"
     },
     "customTags": {
       "type": "text"

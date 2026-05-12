@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "topic_tags",
+  "info": {
+    "singularName": "topic-tag",
+    "pluralName": "topic-tags",
+    "displayName": "Topic Tag"
+  },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": { "type": "uid", "targetField": "label", "required": true },
+    "label": { "type": "string", "required": true }
+  }
+}

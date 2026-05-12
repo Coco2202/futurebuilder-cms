@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "persona_tags",
+  "info": {
+    "singularName": "persona-tag",
+    "pluralName": "persona-tags",
+    "displayName": "Persona Tag"
+  },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": { "type": "uid", "targetField": "label", "required": true },
+    "label": { "type": "string", "required": true }
+  }
+}
