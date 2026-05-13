@@ -17,7 +17,7 @@
       "unique": true
     },
     "email": {
-      "type": "email"
+      "type": "string"
     },
     "firstName": {
       "type": "string"
@@ -28,6 +28,9 @@
     "termsAccepted": {
       "type": "boolean",
       "default": false
+    },
+    "termsAcceptedAt": {
+      "type": "datetime"
     },
     "termsVersion": {
       "type": "string"
@@ -44,6 +47,12 @@
     "goalPrimary": {
       "type": "string"
     },
+    "painPoints": {
+      "type": "json"
+    },
+    "focusAreas": {
+      "type": "json"
+    },
     "toolsNotes": {
       "type": "text"
     },
@@ -52,6 +61,18 @@
     },
     "organizationSlugs": {
       "type": "json"
+    },
+    "organizationNames": {
+      "type": "json"
+    },
+    "backendUserCreatedAt": {
+      "type": "datetime"
+    },
+    "backendUserUpdatedAt": {
+      "type": "datetime"
+    },
+    "lastPasswordChangeAt": {
+      "type": "datetime"
     },
     "lastSyncedAt": {
       "type": "datetime"
