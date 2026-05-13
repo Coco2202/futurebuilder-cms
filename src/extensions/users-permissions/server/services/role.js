@@ -66,10 +66,12 @@ module.exports = ({ strapi }) => ({
       .findMany({ sort: ['name'] });
 
     for (const role of roles) {
-      // Strapi v5 fix: use $eq operator instead of shorthand { id: value }
+      // Strapi v5 / database query layer: filter manyToOne by the FK scalar, not `{ id: ... }`
+      // (nested `id` is mis-parsed and throws "Undefined attribute level operator id").
+      const roleKey = role.id ?? role.documentId;
       role.nb_users = await strapi.db
         .query('plugin::users-permissions.user')
-        .count({ where: { role: { id: { $eq: role.id } } } });
+        .count({ where: { role: roleKey } });
     }
 
     return roles;
