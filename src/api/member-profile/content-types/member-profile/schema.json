@@ -83,6 +83,10 @@
     },
     "lastSyncedAt": {
       "type": "datetime"
+    },
+    "pendingDeletion": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
