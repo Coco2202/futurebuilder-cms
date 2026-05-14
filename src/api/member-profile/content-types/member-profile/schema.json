@@ -35,6 +35,13 @@
     "termsVersion": {
       "type": "string"
     },
+    "hasCrm": {
+      "type": "boolean",
+      "default": false
+    },
+    "billingMethod": {
+      "type": "string"
+    },
     "persona": {
       "type": "string"
     },
