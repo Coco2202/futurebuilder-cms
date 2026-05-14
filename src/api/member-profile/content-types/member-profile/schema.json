@@ -1,0 +1,92 @@
+{
+  "kind": "collectionType",
+  "collectionName": "member_profiles",
+  "info": {
+    "singularName": "member-profile",
+    "pluralName": "member-profiles",
+    "displayName": "Member profile (mirror)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "backendUserId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "email": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "termsAccepted": {
+      "type": "boolean",
+      "default": false
+    },
+    "termsAcceptedAt": {
+      "type": "datetime"
+    },
+    "termsVersion": {
+      "type": "string"
+    },
+    "hasCrm": {
+      "type": "boolean",
+      "default": false
+    },
+    "billingMethod": {
+      "type": "string"
+    },
+    "persona": {
+      "type": "string"
+    },
+    "ecosystem": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "goalPrimary": {
+      "type": "string"
+    },
+    "painPoints": {
+      "type": "json"
+    },
+    "focusAreas": {
+      "type": "json"
+    },
+    "toolsNotes": {
+      "type": "text"
+    },
+    "playlistLevel": {
+      "type": "string"
+    },
+    "organizationSlugs": {
+      "type": "json"
+    },
+    "organizationNames": {
+      "type": "json"
+    },
+    "backendUserCreatedAt": {
+      "type": "datetime"
+    },
+    "backendUserUpdatedAt": {
+      "type": "datetime"
+    },
+    "lastPasswordChangeAt": {
+      "type": "datetime"
+    },
+    "lastSyncedAt": {
+      "type": "datetime"
+    },
+    "pendingDeletion": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
