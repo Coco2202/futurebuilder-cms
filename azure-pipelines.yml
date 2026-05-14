@@ -45,14 +45,29 @@ steps:
 
   - task: AzureCLI@2
     displayName: Update Container App image
+    timeoutInMinutes: 45
     inputs:
       azureSubscription: arm_futurebuilder_dev
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        set -euo pipefail
+        set -uo pipefail
         az extension add --name containerapp --upgrade --yes 2>/dev/null || true
-        az containerapp update \
-          --name "$(containerAppName)" \
-          --resource-group "$(resourceGroup)" \
-          --image "$(containerRegistryLoginServer)/$(imageRepository):$(tag)"
+        IMAGE="$(containerRegistryLoginServer)/$(imageRepository):$(tag)"
+        echo "=== Updating $(containerAppName) with $IMAGE ==="
+        # Microsoft.App often returns GatewayTimeout; retries with backoff usually succeed.
+        for attempt in 1 2 3 4 5 6; do
+          echo "--- az containerapp update attempt $attempt/6 ---"
+          if az containerapp update \
+              --name "$(containerAppName)" \
+              --resource-group "$(resourceGroup)" \
+              --image "$IMAGE"; then
+            echo "Container app image update succeeded."
+            exit 0
+          fi
+          rc=$?
+          echo "Update failed (exit $rc). Sleeping $((attempt * 25))s before retry..."
+          sleep $((attempt * 25))
+        done
+        echo "##[error]az containerapp update failed after 6 attempts (check Azure status / quotas)."
+        exit 1
