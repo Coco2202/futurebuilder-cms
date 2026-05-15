@@ -89,6 +89,87 @@
     },
     "customTags": {
       "type": "text"
+    },
+
+    "learningStage": {
+      "type": "enumeration",
+      "enum": ["beginner", "advanced", "pro"]
+    },
+
+    "sourcePlatform": {
+      "type": "enumeration",
+      "enum": ["youtube", "spotify", "apple_podcasts", "npr", "other"]
+    },
+    "sourceChannel": {
+      "type": "string"
+    },
+    "sourceUploadDate": {
+      "type": "date"
+    },
+    "sourceChecksum": {
+      "type": "string"
+    },
+
+    "secondaryTopics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::topic.topic"
+    },
+
+    "importStatus": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "pending",
+        "ready",
+        "needs_review",
+        "needs_url_verify",
+        "needs_url",
+        "broken_url",
+        "imported",
+        "blocked"
+      ]
+    },
+    "confidence": {
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "tagReason": {
+      "type": "text"
+    },
+    "needsReview": {
+      "type": "boolean",
+      "default": false
+    },
+    "reviewStatus": {
+      "type": "enumeration",
+      "default": "draft",
+      "enum": [
+        "draft",
+        "review_required",
+        "manual_review",
+        "approved",
+        "rejected",
+        "unsupported_source"
+      ]
+    },
+    "humanNotes": {
+      "type": "text"
+    },
+
+    "importedToStrapi": {
+      "type": "boolean",
+      "default": false
+    },
+    "importedAt": {
+      "type": "datetime"
+    },
+    "importBatchId": {
+      "type": "string"
+    },
+    "lastTagUpdatedAt": {
+      "type": "datetime"
     }
   }
 }
