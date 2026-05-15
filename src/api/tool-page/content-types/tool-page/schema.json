@@ -4,7 +4,7 @@
   "info": {
     "singularName": "tool-page",
     "pluralName": "tool-pages",
-    "displayName": "tool-page"
+    "displayName": "Tool Page"
   },
   "options": {
     "draftAndPublish": true

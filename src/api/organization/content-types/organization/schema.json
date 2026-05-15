@@ -4,7 +4,7 @@
   "info": {
     "singularName": "organization",
     "pluralName": "organizations",
-    "displayName": "organization"
+    "displayName": "Organization"
   },
   "options": {
     "draftAndPublish": true

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "member-profile",
     "pluralName": "member-profiles",
-    "displayName": "Member profile (mirror)"
+    "displayName": "Member Profile"
   },
   "options": {
     "draftAndPublish": true

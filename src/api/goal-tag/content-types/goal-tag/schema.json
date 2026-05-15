@@ -4,12 +4,21 @@
   "info": {
     "singularName": "goal-tag",
     "pluralName": "goal-tags",
-    "displayName": "Goal Tag"
+    "displayName": "z Goal Tag"
   },
-  "options": { "draftAndPublish": false },
+  "options": {
+    "draftAndPublish": false
+  },
   "pluginOptions": {},
   "attributes": {
-    "slug": { "type": "uid", "targetField": "label", "required": true },
-    "label": { "type": "string", "required": true }
+    "slug": {
+      "type": "uid",
+      "targetField": "label",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    }
   }
 }

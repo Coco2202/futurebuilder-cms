@@ -4,7 +4,7 @@
   "info": {
     "singularName": "content-item",
     "pluralName": "content-items",
-    "displayName": "content_item"
+    "displayName": "Content Item"
   },
   "options": {
     "draftAndPublish": true
@@ -23,7 +23,11 @@
     "type": {
       "type": "enumeration",
       "required": true,
-      "enum": ["video", "podcast", "pdf"]
+      "enum": [
+        "video",
+        "podcast",
+        "pdf"
+      ]
     },
     "description": {
       "type": "text"
@@ -38,13 +42,20 @@
     "scope": {
       "type": "enumeration",
       "required": true,
-      "enum": ["core", "swst", "swsc"]
+      "enum": [
+        "core",
+        "swst",
+        "swsc"
+      ]
     },
     "accessLevel": {
       "type": "enumeration",
       "required": true,
       "default": "public",
-      "enum": ["public", "organization_only"]
+      "enum": [
+        "public",
+        "organization_only"
+      ]
     },
     "topics": {
       "type": "relation",
@@ -60,12 +71,21 @@
     },
     "difficultyLevel": {
       "type": "enumeration",
-      "enum": ["foundation", "execution", "optimisation"]
+      "enum": [
+        "foundation",
+        "execution",
+        "optimisation"
+      ]
     },
     "priority": {
       "type": "enumeration",
       "default": "medium",
-      "enum": ["low", "medium", "high", "essential"]
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "essential"
+      ]
     },
     "personaTags": {
       "type": "relation",
@@ -92,11 +112,18 @@
     },
     "learningStage": {
       "type": "enumeration",
-      "enum": ["beginner", "advanced", "pro"]
+      "enum": [
+        "beginner",
+        "advanced",
+        "pro"
+      ]
     },
     "sourcePlatform": {
       "type": "enumeration",
-      "enum": ["youtube", "spotify"]
+      "enum": [
+        "youtube",
+        "spotify"
+      ]
     },
     "sourceChannel": {
       "type": "string"
