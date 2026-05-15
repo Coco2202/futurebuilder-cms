@@ -4,12 +4,21 @@
   "info": {
     "singularName": "persona-tag",
     "pluralName": "persona-tags",
-    "displayName": "Persona Tag"
+    "displayName": "z Persona Tag"
   },
-  "options": { "draftAndPublish": false },
+  "options": {
+    "draftAndPublish": false
+  },
   "pluginOptions": {},
   "attributes": {
-    "slug": { "type": "uid", "targetField": "label", "required": true },
-    "label": { "type": "string", "required": true }
+    "slug": {
+      "type": "uid",
+      "targetField": "label",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    }
   }
 }

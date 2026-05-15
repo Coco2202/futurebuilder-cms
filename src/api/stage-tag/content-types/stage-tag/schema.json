@@ -4,12 +4,21 @@
   "info": {
     "singularName": "stage-tag",
     "pluralName": "stage-tags",
-    "displayName": "Stage Tag"
+    "displayName": "z Stage Tag"
   },
-  "options": { "draftAndPublish": false },
+  "options": {
+    "draftAndPublish": false
+  },
   "pluginOptions": {},
   "attributes": {
-    "slug": { "type": "uid", "targetField": "label", "required": true },
-    "label": { "type": "string", "required": true }
+    "slug": {
+      "type": "uid",
+      "targetField": "label",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    }
   }
 }

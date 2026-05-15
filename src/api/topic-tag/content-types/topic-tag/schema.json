@@ -4,12 +4,21 @@
   "info": {
     "singularName": "topic-tag",
     "pluralName": "topic-tags",
-    "displayName": "Topic Tag"
+    "displayName": "z Topic Tag"
   },
-  "options": { "draftAndPublish": false },
+  "options": {
+    "draftAndPublish": false
+  },
   "pluginOptions": {},
   "attributes": {
-    "slug": { "type": "uid", "targetField": "label", "required": true },
-    "label": { "type": "string", "required": true }
+    "slug": {
+      "type": "uid",
+      "targetField": "label",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    }
   }
 }

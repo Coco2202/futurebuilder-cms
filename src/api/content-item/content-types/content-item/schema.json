@@ -4,7 +4,7 @@
   "info": {
     "singularName": "content-item",
     "pluralName": "content-items",
-    "displayName": "content_item"
+    "displayName": "Content Item"
   },
   "options": {
     "draftAndPublish": true
@@ -23,7 +23,11 @@
     "type": {
       "type": "enumeration",
       "required": true,
-      "enum": ["video", "podcast", "pdf"]
+      "enum": [
+        "video",
+        "podcast",
+        "pdf"
+      ]
     },
     "description": {
       "type": "text"
@@ -38,34 +42,50 @@
     "scope": {
       "type": "enumeration",
       "required": true,
-      "enum": ["core", "swst", "swsc"]
+      "enum": [
+        "core",
+        "swst",
+        "swsc"
+      ]
     },
     "accessLevel": {
       "type": "enumeration",
       "required": true,
       "default": "public",
-      "enum": ["public", "organization_only"]
+      "enum": [
+        "public",
+        "organization_only"
+      ]
     },
-    "topic": {
+    "topics": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::topic.topic",
       "inversedBy": "content_items"
     },
-    "organization": {
+    "organizations": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::organization.organization",
       "inversedBy": "content_items"
     },
     "difficultyLevel": {
       "type": "enumeration",
-      "enum": ["foundation", "execution", "optimisation"]
+      "enum": [
+        "foundation",
+        "execution",
+        "optimisation"
+      ]
     },
     "priority": {
       "type": "enumeration",
       "default": "medium",
-      "enum": ["low", "medium", "high", "essential"]
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "essential"
+      ]
     },
     "personaTags": {
       "type": "relation",
@@ -89,6 +109,77 @@
     },
     "customTags": {
       "type": "text"
+    },
+    "learningStage": {
+      "type": "enumeration",
+      "enum": [
+        "beginner",
+        "advanced",
+        "pro"
+      ]
+    },
+    "sourcePlatform": {
+      "type": "enumeration",
+      "enum": [
+        "youtube",
+        "spotify"
+      ]
+    },
+    "sourceChannel": {
+      "type": "string"
+    },
+    "sourceUploadDate": {
+      "type": "date"
+    },
+    "sourceChecksum": {
+      "type": "string"
+    },
+    "importStatus": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "pending",
+        "ready",
+        "needs_review",
+        "needs_url_verify",
+        "needs_url",
+        "broken_url",
+        "imported",
+        "blocked"
+      ]
+    },
+    "confidence": {
+      "type": "integer",
+      "min": 0,
+      "max": 100
+    },
+    "tagReason": {
+      "type": "text"
+    },
+    "needsReview": {
+      "type": "boolean",
+      "default": false
+    },
+    "reviewStatus": {
+      "type": "enumeration",
+      "default": "draft",
+      "enum": [
+        "draft",
+        "review_required",
+        "manual_review",
+        "approved",
+        "rejected",
+        "unsupported_source"
+      ]
+    },
+    "humanNotes": {
+      "type": "text"
+    },
+    "importedAt": {
+      "type": "datetime"
+    },
+    "importBatchId": {
+      "type": "string"
     }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "bulkable": true,
+  "filterable": true,
+  "searchable": true,
+  "pageSize": 25,
+  "mainField": "title",
+  "defaultSortBy": "orderIndex",
+  "defaultSortOrder": "ASC"
+}
