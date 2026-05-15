@@ -46,15 +46,15 @@
       "default": "public",
       "enum": ["public", "organization_only"]
     },
-    "topic": {
+    "topics": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::topic.topic",
       "inversedBy": "content_items"
     },
-    "organization": {
+    "organizations": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::organization.organization",
       "inversedBy": "content_items"
     },
@@ -90,15 +90,13 @@
     "customTags": {
       "type": "text"
     },
-
     "learningStage": {
       "type": "enumeration",
       "enum": ["beginner", "advanced", "pro"]
     },
-
     "sourcePlatform": {
       "type": "enumeration",
-      "enum": ["youtube", "spotify", "apple_podcasts", "npr", "other"]
+      "enum": ["youtube", "spotify"]
     },
     "sourceChannel": {
       "type": "string"
@@ -109,13 +107,6 @@
     "sourceChecksum": {
       "type": "string"
     },
-
-    "secondaryTopics": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::topic.topic"
-    },
-
     "importStatus": {
       "type": "enumeration",
       "default": "pending",
@@ -157,19 +148,11 @@
     "humanNotes": {
       "type": "text"
     },
-
-    "importedToStrapi": {
-      "type": "boolean",
-      "default": false
-    },
     "importedAt": {
       "type": "datetime"
     },
     "importBatchId": {
       "type": "string"
-    },
-    "lastTagUpdatedAt": {
-      "type": "datetime"
     }
   }
 }

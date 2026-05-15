@@ -42,9 +42,9 @@
     },
     "content_items": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::content-item.content-item",
-      "mappedBy": "organization"
+      "mappedBy": "organizations"
     },
     "tool_pages": {
       "type": "relation",

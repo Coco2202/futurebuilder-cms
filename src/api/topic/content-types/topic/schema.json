@@ -49,9 +49,9 @@
     },
     "content_items": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::content-item.content-item",
-      "mappedBy": "topic"
+      "mappedBy": "topics"
     },
     "orderIndex": {
       "type": "integer",
