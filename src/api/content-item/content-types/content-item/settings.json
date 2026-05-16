@@ -4,6 +4,6 @@
   "searchable": true,
   "pageSize": 25,
   "mainField": "title",
-  "defaultSortBy": "title",
-  "defaultSortOrder": "ASC"
+  "defaultSortBy": "importedAt",
+  "defaultSortOrder": "DESC"
 }
