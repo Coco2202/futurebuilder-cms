@@ -50,7 +50,6 @@
     },
     "accessLevel": {
       "type": "enumeration",
-      "required": true,
       "default": "public",
       "enum": [
         "public",
