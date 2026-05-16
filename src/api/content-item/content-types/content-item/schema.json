@@ -69,7 +69,7 @@
       "target": "api::organization.organization",
       "inversedBy": "content_items"
     },
-    "difficultyLevel": {
+    "playlistLevel": {
       "type": "enumeration",
       "enum": [
         "foundation",
@@ -77,7 +77,7 @@
         "optimisation"
       ]
     },
-    "priority": {
+    "editorialPriority": {
       "type": "enumeration",
       "default": "medium",
       "enum": [
@@ -87,22 +87,22 @@
         "essential"
       ]
     },
-    "personaTags": {
+    "builderTypeTag": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::persona-tag.persona-tag"
     },
-    "stageTags": {
+    "startingPoint": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::stage-tag.stage-tag"
     },
-    "goalTags": {
+    "goalTag": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::goal-tag.goal-tag"
     },
-    "painPointTags": {
+    "topicTag": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::topic-tag.topic-tag"
